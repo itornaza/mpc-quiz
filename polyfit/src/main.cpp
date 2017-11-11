@@ -1,12 +1,10 @@
-// In this quiz you'll fit a polynomial to waypoints.
-
 #include <iostream>
 #include "Eigen-3.3/Eigen/Core"
 #include "Eigen-3.3/Eigen/QR"
 
 using namespace Eigen;
 
-// Evaluate a polynomial.
+// Evaluate a polynomial
 double polyeval(Eigen::VectorXd coeffs, double x) {
   double result = 0.0;
   for (int i = 0; i < coeffs.size(); i++) {
@@ -15,7 +13,7 @@ double polyeval(Eigen::VectorXd coeffs, double x) {
   return result;
 }
 
-// Fit a polynomial.
+// Fit a polynomial
 // Adapted from
 // https://github.com/JuliaMath/Polynomials.jl/blob/master/src/Polynomials.jl#L676-L716
 Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
@@ -49,10 +47,11 @@ int main() {
   // y waypoint coordinates
   yvals << 5.17, -2.25, -15.306, -29.46, -42.85, -57.6116;
 
-  // Using `polyfit` to fit a third order polynomial to the (x, y) coordinates.
+  // Using polyfit to fit a third order polynomial to the (x, y) coordinates
   Eigen::VectorXd coeffs = polyfit(xvals, yvals, 3);
   
   for (double x = 0; x <= 20; x += 1.0) {
+    // Using polyeval to calculate the polynomial value at x
     std::cout << polyeval(coeffs, x) << std::endl;
   }
   
